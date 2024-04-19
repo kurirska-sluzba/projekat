@@ -1,4 +1,4 @@
-unit Unit1;
+﻿unit Unit1;
 
 interface
 
@@ -14,6 +14,7 @@ type
     sifra: TEdit;
     Button1: TButton;
     Label3: TLabel;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,5 +29,25 @@ implementation
 {$R *.dfm}
 
 uses Unit2;
+
+procedure TForm1.Button1Click(Sender: TObject);
+var found: boolean;
+begin
+  DataModule2.NaloziTable.Open;
+
+  begin
+    DataModule2.NaloziTable.First;
+
+      while (not DataModule2.NaloziTable.Eof) and (found = false) do
+        begin
+           if (DataModule2.NaloziTable['korisnicko_ime'] = korisnickoIme.Text) and (DataModule2.NaloziTable['sifra'] = sifra.Text) then
+              begin
+                  found := true;
+              end
+            else
+              DataModule2.NaloziTable.Next;
+        end;
+    end;
+    end;
 
 end.

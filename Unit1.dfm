@@ -60,5 +60,6 @@ object Form1: TForm1
     Height = 41
     Caption = 'Uloguj se'
     TabOrder = 2
+    OnClick = Button1Click
   end
 end
