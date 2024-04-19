@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2024/04/19 16:11:24.000.496,=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/04/19 16:26:14.239,=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/04/19 16:27:28.954,C:\Users\ivkov\Documents\projekat\Unit1.dfm=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/04/19 16:27:28.954,C:\Users\ivkov\Documents\projekat\Unit1.pas=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2024/04/19 16:44:22.894,=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/04/19 16:48:35.159,C:\Users\ivkov\Documents\projekat\Unit2.pas=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/04/19 16:48:35.159,C:\Users\ivkov\Documents\projekat\Unit2.dfm=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2024/04/19 16:48:37.070,C:\Users\ivkov\Documents\projekat\Project1.dproj=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+  </Transactions>
+</BorlandProject>
