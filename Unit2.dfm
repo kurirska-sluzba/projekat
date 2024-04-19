@@ -18,7 +18,7 @@ object DataModule2: TDataModule2
     Connection = Conn
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'nalozi'
-    Left = 232
+    Left = 233
     Top = 104
   end
 end

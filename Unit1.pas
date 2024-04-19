@@ -28,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2;
+uses Unit2, Unit3;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var found: boolean;
@@ -43,11 +43,17 @@ begin
            if (DataModule2.NaloziTable['korisnicko_ime'] = korisnickoIme.Text) and (DataModule2.NaloziTable['sifra'] = sifra.Text) then
               begin
                   found := true;
+
+                  Form3.Show(); // prikazuje korisnicki meni
+
+                  Form1.Hide(); // gasi prozor za login
               end
             else
               DataModule2.NaloziTable.Next;
         end;
     end;
+      if found = false then
+        ShowMessage('Pogrešno korisničko ime / lozinka!');
     end;
 
 end.
