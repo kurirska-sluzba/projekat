@@ -24,4 +24,42 @@ object Form5: TForm5
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object DBComboBox1: TDBComboBox
+    Left = 24
+    Top = 96
+    Width = 233
+    Height = 23
+    DataField = 'ime'
+    DataSource = DataModule2.NaloziDataSource
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 487
+    Top = 94
+    Width = 122
+    Height = 25
+    Caption = 'Dodaj podrud'#382'binu'
+    TabOrder = 1
+  end
+  object DBGrid1: TDBGrid
+    Left = 24
+    Top = 144
+    Width = 585
+    Height = 282
+    TabOrder = 2
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -12
+    TitleFont.Name = 'Segoe UI'
+    TitleFont.Style = []
+  end
+  object Button2: TButton
+    Left = 271
+    Top = 94
+    Width = 122
+    Height = 25
+    Cancel = True
+    Caption = 'Dodaj proizvod'
+    TabOrder = 3
+  end
 end

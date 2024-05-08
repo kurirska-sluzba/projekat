@@ -15,6 +15,13 @@ type
   TDataModule2 = class(TDataModule)
     Conn: TFDConnection;
     NaloziTable: TFDTable;
+    NaloziDataSource: TDataSource;
+    SviNaloziTable: TFDTable;
+    SviNaloziTableid: TIntegerField;
+    SviNaloziTableime: TWideStringField;
+    SviNaloziTablekorisnicko_ime: TWideStringField;
+    SviNaloziTablesifra: TWideStringField;
+    SviNaloziTabletip: TWideStringField;
   private
     { Private declarations }
   public
