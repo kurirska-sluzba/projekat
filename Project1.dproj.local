@@ -3,12 +3,14 @@
 	<Transactions>
     <Transaction>2024/04/19 16:11:24.000.496,=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2024/04/19 16:26:14.000.239,=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2024/04/19 16:27:28.000.954,C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\ivkov\Documents\projekat\Unit1.dfm</Transaction>
-    <Transaction>2024/04/19 16:27:28.000.954,C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\ivkov\Documents\projekat\Unit1.pas</Transaction>
+    <Transaction>2024/04/19 16:27:28.000.954,C:\Users\ivkov\Documents\projekat\Unit1.dfm=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
+    <Transaction>2024/04/19 16:27:28.000.954,C:\Users\ivkov\Documents\projekat\Unit1.pas=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
     <Transaction>2024/04/19 16:44:22.000.894,=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
-    <Transaction>2024/04/19 16:48:35.000.159,C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.dfm=C:\Users\ivkov\Documents\projekat\Unit2.dfm</Transaction>
-    <Transaction>2024/04/19 16:48:35.000.159,C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.pas=C:\Users\ivkov\Documents\projekat\Unit2.pas</Transaction>
-    <Transaction>2024/04/19 16:48:37.000.070,C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\ivkov\Documents\projekat\Project1.dproj</Transaction>
+    <Transaction>2024/04/19 16:48:35.000.159,C:\Users\ivkov\Documents\projekat\Unit2.pas=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.pas</Transaction>
+    <Transaction>2024/04/19 16:48:35.000.159,C:\Users\ivkov\Documents\projekat\Unit2.dfm=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Unit2.dfm</Transaction>
+    <Transaction>2024/04/19 16:48:37.000.070,C:\Users\ivkov\Documents\projekat\Project1.dproj=C:\Users\ivkov\OneDrive\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
     <Transaction>2024/04/19 18:04:20.000.323,=C:\Users\ivkov\Documents\projekat\Unit3.pas</Transaction>
+    <Transaction>2024/05/08 17:12:33.282,=C:\Users\ivkov\Documents\projekat\Unit4.pas</Transaction>
+    <Transaction>2024/05/08 17:14:12.268,=C:\Users\ivkov\Documents\projekat\Unit5.pas</Transaction>
   </Transactions>
 </BorlandProject>

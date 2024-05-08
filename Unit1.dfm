@@ -26,7 +26,7 @@ object Form1: TForm1
     Caption = 'Sifra'
   end
   object Label3: TLabel
-    Left = 88
+    Left = 80
     Top = 26
     Width = 285
     Height = 54

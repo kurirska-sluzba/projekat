@@ -28,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-uses Unit2, Unit3;
+uses Unit2, Unit3, Unit4, Unit5;
 
 procedure TForm1.Button1Click(Sender: TObject);
 var found: boolean;
@@ -44,9 +44,27 @@ begin
               begin
                   found := true;
 
-                  Form3.Show(); // prikazuje korisnicki meni
+                  if DataModule2.NaloziTable['tip'] = 'korisnik' then
+                    begin
+                      Form3.Show(); // prikazuje paker meni
 
-                  Form1.Hide(); // gasi prozor za login
+                      Form1.Hide(); // gasi prozor za login
+                    end;
+
+                  if DataModule2.NaloziTable['tip'] = 'kurir' then
+                    begin
+                      Form4.Show(); // prikazuje paker meni
+
+                      Form1.Hide(); // gasi prozor za login
+                    end;
+
+                  if DataModule2.NaloziTable['tip'] = 'paker' then
+                    begin
+                      Form5.Show(); // prikazuje paker meni
+
+                      Form1.Hide(); // gasi prozor za login
+                    end;
+
               end
             else
               DataModule2.NaloziTable.Next;
