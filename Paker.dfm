@@ -2,7 +2,7 @@ object PakerForm: TPakerForm
   Left = 0
   Top = 0
   Caption = 'Paker'
-  ClientHeight = 722
+  ClientHeight = 744
   ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -34,14 +34,14 @@ object PakerForm: TPakerForm
   end
   object Label1: TLabel
     Left = 16
-    Top = 651
+    Top = 659
     Width = 82
     Height = 15
     Caption = 'Cena po'#353'tarine:'
   end
   object Label2: TLabel
     Left = 16
-    Top = 672
+    Top = 688
     Width = 72
     Height = 15
     Caption = 'Ukupna cena:'
@@ -119,6 +119,28 @@ object PakerForm: TPakerForm
     Height = 25
     Caption = 'Sa'#269'uvaj'
     TabOrder = 8
+    OnClick = Button1Click
+  end
+  object cenaProizvodaEdit: TEdit
+    Left = 120
+    Top = 627
+    Width = 121
+    Height = 23
+    TabOrder = 9
+  end
+  object cenaPostarineEdit: TEdit
+    Left = 120
+    Top = 656
+    Width = 121
+    Height = 23
+    TabOrder = 10
+  end
+  object ukupnaCenaEdit: TEdit
+    Left = 120
+    Top = 685
+    Width = 121
+    Height = 23
+    TabOrder = 11
   end
   object FetchNaloziQuery: TFDQuery
     Connection = DataModule2.Conn

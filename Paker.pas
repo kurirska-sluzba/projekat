@@ -28,9 +28,13 @@ type
     Button1: TButton;
     Label1: TLabel;
     Label2: TLabel;
+    cenaProizvodaEdit: TEdit;
+    cenaPostarineEdit: TEdit;
+    ukupnaCenaEdit: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure RefreshGrid();
     procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -61,6 +65,26 @@ begin
 
   for Col := 0 to StringGrid.ColCount - 1 do
     StringGrid.ColWidths[Col] := MaxWidth[Col] + StringGrid.DefaultColWidth;
+end;
+
+procedure TPakerForm.Button1Click(Sender: TObject);
+var SQL: String;
+begin
+  SQL := 'INSERT INTO posiljka(korisnik_id, napravljeno, adresa_isporuke, grad_isporuke, postanski_broj_isporuke, datum_isporuke)' +
+    'VALUES(:korisnik_id, :napravljeno, :adresa_isporuke, :grad_isporuke, :postanski_broj_isporuke, :datum_isporuke)';
+
+  FDQuery1.SQL.Text := SQL;
+  FDQuery1.Close;
+  FDQuery1.ParamByName('korisnik_id').Value := '1';
+  FDQuery1.ParamByName('napravljeno').Value := QuotedStr(FormatDateTime('YYYY-MM-DD', Now));
+  FDQuery1.ParamByName('adresa_isporuke').Value := adresaEdit.Text;
+  FDQuery1.ParamByName('grad_isporuke').Value := gradEdit.Text;
+  FDQuery1.ParamByName('postanski_broj_isporuke').Value := posBrojEdit.Text;
+  FDQuery1.ParamByName('datum_isporuke').Value := QuotedStr(FormatDateTime('YYYY-MM-DD', Now));
+
+
+  FDQuery1.ExecSQL;
+  FDQuery1.Close;
 end;
 
 procedure TPakerForm.Button2Click(Sender: TObject);
