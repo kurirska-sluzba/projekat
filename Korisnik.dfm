@@ -2,7 +2,7 @@ object KorisnikForm: TKorisnikForm
   Left = 0
   Top = 0
   Caption = 'Korisnik'
-  ClientHeight = 550
+  ClientHeight = 368
   ClientWidth = 704
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -10,6 +10,7 @@ object KorisnikForm: TKorisnikForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Label3: TLabel
     Left = 24
@@ -24,32 +25,39 @@ object KorisnikForm: TKorisnikForm
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object Edit1: TEdit
-    Left = 24
-    Top = 95
-    Width = 265
-    Height = 23
+  object StringGrid1: TStringGrid
+    Left = 224
+    Top = 88
+    Width = 449
+    Height = 217
     TabOrder = 0
-    TextHint = 'Pretrazi po broju posiljke'
   end
-  object Button1: TButton
-    Left = 304
-    Top = 96
+  object Zatvori: TButton
+    Left = 598
+    Top = 322
     Width = 75
     Height = 25
-    Caption = 'Pretra'#382'i'
+    Caption = 'Zatvori'
     TabOrder = 1
+    OnClick = ZatvoriClick
   end
-  object DBGrid1: TDBGrid
+  object ListBox1: TListBox
     Left = 24
-    Top = 144
-    Width = 657
-    Height = 385
+    Top = 88
+    Width = 185
+    Height = 217
+    ItemHeight = 15
     TabOrder = 2
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -12
-    TitleFont.Name = 'Segoe UI'
-    TitleFont.Style = []
+    OnClick = ListBox1Click
+  end
+  object FDQuery1: TFDQuery
+    Connection = DataModule2.Conn
+    Left = 600
+    Top = 32
+  end
+  object FDQuery2: TFDQuery
+    Connection = DataModule2.Conn
+    Left = 648
+    Top = 32
   end
 end

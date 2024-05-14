@@ -2,8 +2,8 @@ object KurirForm: TKurirForm
   Left = 0
   Top = 0
   Caption = 'Kurir'
-  ClientHeight = 442
-  ClientWidth = 628
+  ClientHeight = 644
+  ClientWidth = 745
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
