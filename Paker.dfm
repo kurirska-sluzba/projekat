@@ -2,18 +2,19 @@ object PakerForm: TPakerForm
   Left = 0
   Top = 0
   Caption = 'Paker'
-  ClientHeight = 442
-  ClientWidth = 628
+  ClientHeight = 722
+  ClientWidth = 693
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Label3: TLabel
-    Left = 24
-    Top = 18
+    Left = 8
+    Top = 8
     Width = 105
     Height = 54
     Caption = 'Paker'
@@ -24,46 +25,127 @@ object PakerForm: TPakerForm
     Font.Style = [fsBold]
     ParentFont = False
   end
-  object DBComboBox1: TDBComboBox
-    Left = 24
-    Top = 96
-    Width = 233
-    Height = 23
-    DataField = 'ime'
-    DataSource = DataModule2.NaloziDataSource
-    TabOrder = 0
+  object ukupnaCenaLabel: TLabel
+    Left = 16
+    Top = 630
+    Width = 85
+    Height = 15
+    Caption = 'Cena proizvoda:'
   end
-  object Button1: TButton
-    Left = 487
-    Top = 94
-    Width = 122
-    Height = 25
-    Caption = 'Dodaj podrud'#382'binu'
-    TabOrder = 1
+  object Label1: TLabel
+    Left = 16
+    Top = 651
+    Width = 82
+    Height = 15
+    Caption = 'Cena po'#353'tarine:'
   end
-  object DBGrid1: TDBGrid
-    Left = 24
-    Top = 144
-    Width = 585
-    Height = 282
-    TabOrder = 2
-    TitleFont.Charset = DEFAULT_CHARSET
-    TitleFont.Color = clWindowText
-    TitleFont.Height = -12
-    TitleFont.Name = 'Segoe UI'
-    TitleFont.Style = []
+  object Label2: TLabel
+    Left = 16
+    Top = 672
+    Width = 72
+    Height = 15
+    Caption = 'Ukupna cena:'
   end
   object Button2: TButton
-    Left = 271
-    Top = 94
-    Width = 122
+    Left = 400
+    Top = 262
+    Width = 273
     Height = 25
     Cancel = True
     Caption = 'Dodaj proizvod'
+    TabOrder = 0
+    OnClick = Button2Click
+  end
+  object StringGrid1: TStringGrid
+    Left = 8
+    Top = 326
+    Width = 673
+    Height = 281
+    TabOrder = 1
+  end
+  object nazivEdit: TEdit
+    Left = 400
+    Top = 142
+    Width = 273
+    Height = 23
+    TabOrder = 2
+    TextHint = 'Naziv predmeta'
+  end
+  object cenaEdit: TEdit
+    Left = 400
+    Top = 182
+    Width = 273
+    Height = 23
     TabOrder = 3
+    TextHint = 'Cena predmeta'
+  end
+  object kolicinaEdit: TEdit
+    Left = 400
+    Top = 222
+    Width = 273
+    Height = 23
+    ImeName = 'US'
+    TabOrder = 4
+    TextHint = 'Kolicina'
+  end
+  object adresaEdit: TEdit
+    Left = 8
+    Top = 142
+    Width = 273
+    Height = 23
+    TabOrder = 5
+    TextHint = 'Adresa isporuke'
+  end
+  object gradEdit: TEdit
+    Left = 8
+    Top = 182
+    Width = 273
+    Height = 23
+    TabOrder = 6
+    TextHint = 'Grad isporuke'
+  end
+  object posBrojEdit: TEdit
+    Left = 8
+    Top = 222
+    Width = 273
+    Height = 23
+    TabOrder = 7
+    TextHint = 'Postanski broj isporuke'
+  end
+  object Button1: TButton
+    Left = 606
+    Top = 630
+    Width = 75
+    Height = 25
+    Caption = 'Sa'#269'uvaj'
+    TabOrder = 8
   end
   object FetchNaloziQuery: TFDQuery
-    Left = 576
+    Connection = DataModule2.Conn
+    SQL.Strings = (
+      
+        'SELECT pr.naziv, pr.cena, pp.kolicina, pp.ukupna_cena FROM posil' +
+        'jka_predmeti pp '
+      'INNER JOIN predmeti pr ON pp.predmet_id = pr.id;')
+    Left = 448
+    Top = 24
+  end
+  object AddPredmetQuery: TFDQuery
+    Connection = DataModule2.Conn
+    SQL.Strings = (
+      
+        'SELECT pr.naziv, pr.cena, pp.kolicina, pp.ukupna_cena FROM posil' +
+        'jka_predmeti pp '
+      'INNER JOIN predmeti pr ON pp.predmet_id = pr.id;')
+    Left = 536
+    Top = 24
+  end
+  object FDQuery1: TFDQuery
+    Connection = DataModule2.Conn
+    SQL.Strings = (
+      'SELECT pr.naziv, pr.cena, pp.kolicina FROM posiljka_predmeti pp '
+      'INNER JOIN predmeti pr ON pp.predmet_id = pr.id;')
+    Left = 616
     Top = 24
   end
 end
