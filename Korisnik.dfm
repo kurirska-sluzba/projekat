@@ -2,7 +2,7 @@ object KorisnikForm: TKorisnikForm
   Left = 0
   Top = 0
   Caption = 'Korisnik'
-  ClientHeight = 368
+  ClientHeight = 463
   ClientWidth = 704
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -25,16 +25,30 @@ object KorisnikForm: TKorisnikForm
     Font.Style = [fsBold]
     ParentFont = False
   end
+  object Label1: TLabel
+    Left = 224
+    Top = 128
+    Width = 35
+    Height = 15
+    Caption = 'Status:'
+  end
+  object Label2: TLabel
+    Left = 224
+    Top = 160
+    Width = 81
+    Height = 15
+    Caption = 'Stvari u paketu:'
+  end
   object StringGrid1: TStringGrid
     Left = 224
-    Top = 88
+    Top = 187
     Width = 449
     Height = 217
     TabOrder = 0
   end
   object Zatvori: TButton
     Left = 598
-    Top = 322
+    Top = 418
     Width = 75
     Height = 25
     Caption = 'Zatvori'
@@ -43,12 +57,20 @@ object KorisnikForm: TKorisnikForm
   end
   object ListBox1: TListBox
     Left = 24
-    Top = 88
+    Top = 187
     Width = 185
     Height = 217
     ItemHeight = 15
     TabOrder = 2
     OnClick = ListBox1Click
+  end
+  object statusEdit: TEdit
+    Left = 280
+    Top = 125
+    Width = 121
+    Height = 23
+    ReadOnly = True
+    TabOrder = 3
   end
   object FDQuery1: TFDQuery
     Connection = DataModule2.Conn

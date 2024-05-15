@@ -18,6 +18,9 @@ type
     Zatvori: TButton;
     ListBox1: TListBox;
     FDQuery2: TFDQuery;
+    Label1: TLabel;
+    Label2: TLabel;
+    statusEdit: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure ClearStringGrid(StringGrid: TStringGrid);
     procedure RefreshGrid();
@@ -58,12 +61,19 @@ var Selected: Integer;
 begin
   if ListBox1.ItemIndex <> -1 then
   begin
-    SQL := 'SELECT pr.naziv, pr.cena, pp.kolicina, pp.ukupna_cena FROM posiljka_predmeti pp INNER JOIN predmeti pr ON pp.predmet_id = pr.id WHERE pp.posiljka_id = :id;';
+    // Dodaj za status posiljke
+    SQL := 'SELECT pr.naziv, pr.cena, pp.kolicina, ps.status, pp.ukupna_cena ' +
+      'FROM posiljka_predmeti pp ' +
+      'INNER JOIN predmeti pr ON pp.predmet_id = pr.id ' +
+      'INNER JOIN posiljka ps ON pp.posiljka_id = ps.id ' +
+      'WHERE pp.posiljka_id = :id';
     Selected := strToInt(ListBox1.Items[ListBox1.ItemIndex]);
 
     FDQuery2.SQL.Text := SQL;
     FDQuery2.ParamByName('id').Value := Selected;
     FDQuery2.Active := True;
+
+    statusEdit.Text := FDQuery2.FieldByName('status').AsString;
 
     RefreshGrid();
   end;
@@ -109,7 +119,7 @@ end;
 procedure TKorisnikForm.Refresh();
 var Row: Integer;
 begin
-  FDQuery1.Open;
+   FDQuery1.Open;
 
   ListBox1.Clear;
 
