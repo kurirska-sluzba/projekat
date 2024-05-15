@@ -45,7 +45,6 @@ uses DB;
 procedure TKorisnikForm.FormCreate(Sender: TObject);
 var SQL: String;
 begin
-  // Prikazi status posiljke
   SQL := 'SELECT id FROM posiljka WHERE korisnik_id = :korisnik_id';
 
   FDQuery1.SQL.Text := SQL;
@@ -67,6 +66,7 @@ begin
       'INNER JOIN predmeti pr ON pp.predmet_id = pr.id ' +
       'INNER JOIN posiljka ps ON pp.posiljka_id = ps.id ' +
       'WHERE pp.posiljka_id = :id';
+
     Selected := strToInt(ListBox1.Items[ListBox1.ItemIndex]);
 
     FDQuery2.SQL.Text := SQL;
@@ -89,31 +89,29 @@ begin
 end;
 
 procedure TKorisnikForm.RefreshGrid();
-var
-  Col, Row: Integer;
+var i: Integer;
 begin
   FDQuery2.Open;
+  FDQuery2.Active := True;
 
-  ClearStringGrid(StringGrid1);
+  StringGrid1.RowCount := 1;
+  StringGrid1.ColCount := 3;
 
-  StringGrid1.ColCount := FDQuery2.Fields.Count;
+  StringGrid1.Cells[0, 0] := 'Naziv';
+  StringGrid1.Cells[1, 0] := 'Cena';
+  StringGrid1.Cells[2, 0] := 'Kolicina';
 
+  StringGrid1.RowCount := FDQuery2.RecordCount + 1;
 
-  for Col := 0 to FDQuery1.Fields.Count - 1 do
-      StringGrid1.Cells[Col, 0] := FDQuery2.Fields[Col].FieldName;
+  FDQuery2.First;
 
-    FDQuery2.First;
-
-    Row := 1;
-    while not FDQuery2.Eof do
-    begin
-      for Col := 0 to FDQuery2.Fields.Count - 1 do
-        StringGrid1.Cells[Col, Row] := FDQuery2.Fields[Col].AsString;
-      Inc(Row);
-      FDQuery2.Next;
-    end;
-
-    FDQuery2.Close;
+  for i := 1 to StringGrid1.RowCount - 1 do
+  begin
+    StringGrid1.Cells[0, i] := FDQuery2.FieldByName('naziv').AsString;
+    StringGrid1.Cells[1, i] := FDQuery2.FieldByName('cena').AsString;
+    StringGrid1.Cells[2, i] := FDQuery2.FieldByName('kolicina').AsString;
+    FDQuery2.Next;
+  end;
 end;
 
 procedure TKorisnikForm.Refresh();
