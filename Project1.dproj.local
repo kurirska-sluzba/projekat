@@ -18,13 +18,25 @@
     <Transaction>2024/05/13 12:01:09.000.300,C:\Users\ivkov\Documents\projekat-main\DB.dfm=C:\Users\ivkov\Documents\projekat-main\Unit2.dfm</Transaction>
     <Transaction>2024/05/13 12:01:20.000.243,C:\Users\ivkov\Documents\projekat-main\Korisnik.dfm=C:\Users\ivkov\Documents\projekat-main\Unit3.dfm</Transaction>
     <Transaction>2024/05/13 12:01:20.000.243,C:\Users\ivkov\Documents\projekat-main\Korisnik.pas=C:\Users\ivkov\Documents\projekat-main\Unit3.pas</Transaction>
-    <Transaction>2024/05/13 12:01:25.000.782,C:\Users\ivkov\Documents\projekat-main\Kurir.pas=C:\Users\ivkov\Documents\projekat-main\Unit4.pas</Transaction>
     <Transaction>2024/05/13 12:01:25.000.782,C:\Users\ivkov\Documents\projekat-main\Kurir.dfm=C:\Users\ivkov\Documents\projekat-main\Unit4.dfm</Transaction>
+    <Transaction>2024/05/13 12:01:25.000.782,C:\Users\ivkov\Documents\projekat-main\Kurir.pas=C:\Users\ivkov\Documents\projekat-main\Unit4.pas</Transaction>
     <Transaction>2024/05/13 12:01:30.000.591,C:\Users\ivkov\Documents\projekat-main\Paker.dfm=C:\Users\ivkov\Documents\projekat-main\Unit5.dfm</Transaction>
     <Transaction>2024/05/13 12:01:30.000.591,C:\Users\ivkov\Documents\projekat-main\Paker.pas=C:\Users\ivkov\Documents\projekat-main\Unit5.pas</Transaction>
     <Transaction>2024/05/14 10:29:12.000.119,=C:\Users\ivkov\Documents\projekat-main\Unit1.pas</Transaction>
-    <Transaction>2024/05/14 10:29:24.000.227,C:\Users\ivkov\Documents\projekat-main\DodajPredmet.pas=C:\Users\ivkov\Documents\projekat-main\Unit1.pas</Transaction>
     <Transaction>2024/05/14 10:29:24.000.227,C:\Users\ivkov\Documents\projekat-main\DodajPredmet.dfm=C:\Users\ivkov\Documents\projekat-main\Unit1.dfm</Transaction>
+    <Transaction>2024/05/14 10:29:24.000.227,C:\Users\ivkov\Documents\projekat-main\DodajPredmet.pas=C:\Users\ivkov\Documents\projekat-main\Unit1.pas</Transaction>
     <Transaction>2024/05/14 10:39:04.000.234,C:\Users\ivkov\Documents\projekat-main\DodajPredmet.pas=</Transaction>
-  </Transactions>
+    <Transaction>2024/05/15 20:33:39.277,=C:\Users\ivkov\Documents\projekat-main\Unit1.pas</Transaction>
+  </Transactions>  <ProjectSortOrder AutoSort="0" SortType="0">
+    <File Path="DB.pas"/>
+    <File Path="DB.dfm"/>
+    <File Path="Korisnik.pas"/>
+    <File Path="Korisnik.dfm"/>
+    <File Path="Kurir.pas"/>
+    <File Path="Kurir.dfm"/>
+    <File Path="Login.pas"/>
+    <File Path="Login.dfm"/>
+    <File Path="Paker.pas"/>
+    <File Path="Paker.dfm"/>
+  </ProjectSortOrder>
 </BorlandProject>

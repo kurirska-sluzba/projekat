@@ -15,7 +15,6 @@ type
     Label3: TLabel;
     Button2: TButton;
     FetchNaloziQuery: TFDQuery;
-    StringGrid1: TStringGrid;
     nazivEdit: TEdit;
     cenaEdit: TEdit;
     AddPredmetQuery: TFDQuery;
@@ -23,20 +22,24 @@ type
     FDQuery1: TFDQuery;
     ukupnaCenaLabel: TLabel;
     adresaEdit: TEdit;
-    gradEdit: TEdit;
-    posBrojEdit: TEdit;
     Button1: TButton;
     Label1: TLabel;
     Label2: TLabel;
     cenaProizvodaEdit: TEdit;
     cenaPostarineEdit: TEdit;
     ukupnaCenaEdit: TEdit;
+    ComboBox1: TComboBox;
+    FetchGradoviQuery: TFDQuery;
+    ComboBox2: TComboBox;
+    StringGrid1: TStringGrid;
+    procedure PopulateGradovi();
     procedure FormCreate(Sender: TObject);
-    procedure RefreshGrid();
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
-    { Private declarations }
+    posiljkaId: Integer;
+    lastInsertedId: Integer;
+    gradIds: TStringList;
   public
     { Public declarations }
   end;
@@ -69,83 +72,111 @@ end;
 
 procedure TPakerForm.Button1Click(Sender: TObject);
 var SQL: String;
+var i: Integer;
 begin
-  SQL := 'INSERT INTO posiljka(korisnik_id, napravljeno, adresa_isporuke, grad_isporuke, postanski_broj_isporuke, datum_isporuke)' +
-    'VALUES(:korisnik_id, :napravljeno, :adresa_isporuke, :grad_isporuke, :postanski_broj_isporuke, :datum_isporuke)';
+  posiljkaId := Random(MaxInt);
+
+  SQL := 'INSERT INTO posiljka(id, korisnik_id, ukupna_cena, status, napravljeno, adresa_isporuke, grad_id, datum_isporuke)' +
+    'VALUES(:id, :korisnik_id, :ukupna_cena, :status, :napravljeno, :adresa_isporuke, :grad_id, :datum_isporuke)';
 
   FDQuery1.SQL.Text := SQL;
   FDQuery1.Close;
-  FDQuery1.ParamByName('korisnik_id').Value := '1';
+  FDQuery1.ParamByName('id').Value := posiljkaId;
+  FDQuery1.ParamByName('korisnik_id').Value := '1'; // dodaj deo za dodavanje korisnika
+  FDQuery1.ParamByName('ukupna_cena').Value := ukupnaCenaEdit.Text;
+  FDQuery1.ParamByName('status').Value := 'U_OBRADI';
   FDQuery1.ParamByName('napravljeno').Value := QuotedStr(FormatDateTime('YYYY-MM-DD', Now));
   FDQuery1.ParamByName('adresa_isporuke').Value := adresaEdit.Text;
-  FDQuery1.ParamByName('grad_isporuke').Value := gradEdit.Text;
-  FDQuery1.ParamByName('postanski_broj_isporuke').Value := posBrojEdit.Text;
+  FDQuery1.ParamByName('grad_id').Value := gradIDs[ComboBox1.ItemIndex];
   FDQuery1.ParamByName('datum_isporuke').Value := QuotedStr(FormatDateTime('YYYY-MM-DD', Now));
-
 
   FDQuery1.ExecSQL;
   FDQuery1.Close;
+
+  for i := 1 to StringGrid1.RowCount - 1 do
+  begin
+    FDQuery1.SQL.Text := 'INSERT INTO predmeti (naziv, cena) VALUES (:naziv, :cena)';
+    FDQuery1.ParamByName('naziv').AsString := StringGrid1.Cells[0, i];
+    FDQuery1.ParamByName('cena').AsString := StringGrid1.Cells[1, i];
+    FDQuery1.ExecSQL;
+    FDQuery1.Close;
+
+    FDQuery1.Close;
+    FDQuery1.SQL.Text := 'SELECT MAX(id) AS LastID FROM predmeti';
+    FDQuery1.Open;
+
+    if not FDQuery1.IsEmpty then
+    begin
+      lastInsertedId := FDQuery1.FieldByName('LastID').AsInteger;
+    end;
+    FDQuery1.Close;
+
+    FDQuery1.SQL.Text := 'INSERT INTO posiljka_predmeti(posiljka_id, predmet_id, kolicina, ukupna_cena) VALUES (:posiljka_id, :predmet_id, :kolicina, :ukupna_cena)';
+    FDQuery1.ParamByName('posiljka_id').AsString := intToStr(posiljkaId);
+    FDQuery1.ParamByName('predmet_id').AsString := intToStr(lastInsertedId);
+    FDQuery1.ParamByName('kolicina').AsString := StringGrid1.Cells[2, i];
+    FDQuery1.ParamByName('ukupna_cena').AsString := StringGrid1.Cells[3, i];
+    FDQuery1.ExecSQL;
+  end;
+
+  FDQuery1.Close;
+
 end;
 
 procedure TPakerForm.Button2Click(Sender: TObject);
-var Sum: Double;
-var SQL: String;
+var RowIndex, Sum, TotalSum, i: Integer;
 begin
-  SQL := 'INSERT INTO predmeti (naziv, cena) VALUES (:naziv, :cena)';
+  RowIndex := StringGrid1.RowCount;
+  StringGrid1.RowCount := RowIndex + 1;
 
-  AddPredmetQuery.SQL.Text := SQL;
-  AddPredmetQuery.Close;
-  AddPredmetQuery.ParamByName('naziv').Value := nazivEdit.Text;
-  AddPredmetQuery.ParamByName('cena').Value := cenaEdit.Text;
+  Sum := strToInt(kolicinaEdit.Text) * strToInt(cenaEdit.Text);
 
-  AddPredmetQuery.ExecSQL;
+  StringGrid1.Cells[0, RowIndex] := nazivEdit.Text;
+  StringGrid1.Cells[1, RowIndex] := cenaEdit.Text;
+  StringGrid1.Cells[2, RowIndex] := kolicinaEdit.Text;
+  StringGrid1.Cells[3, RowIndex] := intToStr(Sum);
 
-  AddPredmetQuery.SQL.Clear;
-  AddPredmetQuery.Close;
+  TotalSum := TotalSum + Sum;
 
-  SQL := 'INSERT INTO posiljka_predmeti(posiljka_id, predmet_id, kolicina, ukupna_cena) VALUES (1, last_insert_rowid(), :kolicina, :ukupna_cena)';
+  nazivEdit.Clear;
+  cenaEdit.Clear;
+  kolicinaEdit.Clear;
 
-  Sum := StrToFloat(cenaEdit.Text) * StrToInt(kolicinaEdit.Text);
-
-  AddPredmetQuery.SQL.Text := SQL;
-  AddPredmetQuery.ParamByName('kolicina').Value := kolicinaEdit.Text;
-  AddPredmetQuery.ParamByName('ukupna_cena').Value := Sum;
-  AddPredmetQuery.ExecSQL;
-
-  RefreshGrid();
-  AutoAdjustColumnSizes(StringGrid1);
+  cenaProizvodaEdit.Text := intToStr(TotalSum);
+  cenaPostarineEdit.Text := intToStr(500);
+  ukupnaCenaEdit.Text := intToStr(TotalSum + 500);
 end;
 
-procedure TPakerForm.RefreshGrid();
-var
-  Col, Row: Integer;
+procedure TPakerForm.PopulateGradovi();
 begin
-  FetchNaloziQuery.Open;
+  ComboBox1.Clear;
 
-  StringGrid1.ColCount := FetchNaloziQuery.Fields.Count;
+  gradIDs := TStringList.Create;
 
+  FetchGradoviQuery.Open;
 
-  for Col := 0 to FetchNaloziQuery.Fields.Count - 1 do
-      StringGrid1.Cells[Col, 0] := FetchNaloziQuery.Fields[Col].FieldName;
+  while not FetchGradoviQuery.Eof do
+  begin
+    ComboBox1.Items.Add(FetchGradoviQuery.FieldByName('naziv').AsString);
+    gradIDs.Add(FetchGradoviQuery.FieldByName('id').AsString);
+    FetchGradoviQuery.Next;
+  end;
 
-    FetchNaloziQuery.First;
-
-    Row := 1;
-    while not FetchNaloziQuery.Eof do
-    begin
-      for Col := 0 to FetchNaloziQuery.Fields.Count - 1 do
-        StringGrid1.Cells[Col, Row] := FetchNaloziQuery.Fields[Col].AsString;
-      Inc(Row);
-      FetchNaloziQuery.Next;
-    end;
-
-    FetchNaloziQuery.Close;
+  FetchGradoviQuery.Close;
 end;
+
 
 procedure TPakerForm.FormCreate(Sender: TObject);
+var HeaderNames: array of string;
 begin
-  RefreshGrid();
-  AutoAdjustColumnSizes(StringGrid1);
+  StringGrid1.RowCount := 1;
+
+  StringGrid1.Cells[0, 0] := 'Naziv';
+  StringGrid1.Cells[1, 0] := 'Cena';
+  StringGrid1.Cells[2, 0] := 'Kolicina';
+  StringGrid1.Cells[3, 0] := 'Ukupna cena';
+
+  PopulateGradovi();
 end;
 
 end.

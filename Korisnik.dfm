@@ -67,8 +67,9 @@ object KorisnikForm: TKorisnikForm
   object statusEdit: TEdit
     Left = 280
     Top = 125
-    Width = 121
+    Width = 169
     Height = 23
+    Color = cl3DLight
     ReadOnly = True
     TabOrder = 3
   end
