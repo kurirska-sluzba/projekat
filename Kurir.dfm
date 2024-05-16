@@ -10,6 +10,7 @@ object KurirForm: TKurirForm
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCreate = FormCreate
   TextHeight = 15
   object Label3: TLabel
     Left = 24
@@ -52,6 +53,7 @@ object KurirForm: TKurirForm
     Height = 224
     ItemHeight = 15
     TabOrder = 1
+    OnClick = ListBox1Click
   end
   object Zatvori: TButton
     Left = 614
@@ -67,7 +69,7 @@ object KurirForm: TKurirForm
     Width = 145
     Height = 23
     TabOrder = 3
-    Text = 'ComboBox1'
+    Text = 'Status posiljke'
   end
   object CheckBox1: TCheckBox
     Left = 24
@@ -76,12 +78,13 @@ object KurirForm: TKurirForm
     Height = 17
     Caption = 'Prika'#382'i dostavljene posiljke'
     TabOrder = 4
+    OnClick = CheckBox1Click
   end
   object Edit1: TEdit
     Left = 24
     Top = 120
     Width = 122
-    Height = 25
+    Height = 23
     TabOrder = 5
     TextHint = 'Unesite ID  posiljke'
   end
@@ -92,6 +95,7 @@ object KurirForm: TKurirForm
     Height = 25
     Caption = 'Izmeni status'
     TabOrder = 6
+    OnClick = Button1Click
   end
   object Button2: TButton
     Left = 152
@@ -101,5 +105,15 @@ object KurirForm: TKurirForm
     Cancel = True
     Caption = 'Pretrazi'
     TabOrder = 7
+  end
+  object FDQuery1: TFDQuery
+    Connection = DataModule2.Conn
+    Left = 584
+    Top = 16
+  end
+  object FDQuery2: TFDQuery
+    Connection = DataModule2.Conn
+    Left = 640
+    Top = 24
   end
 end
