@@ -131,16 +131,16 @@ object PakerForm: TPakerForm
     ParentShowHint = False
     ShowHint = True
     TabOrder = 9
-    Text = 'ComboBox1'
+    Text = 'Odaberite grad'
     TextHint = 'Izaberite grad'
   end
-  object ComboBox2: TComboBox
+  object korisniciComboBox: TComboBox
     Left = 8
     Top = 142
     Width = 273
     Height = 23
     TabOrder = 10
-    Text = 'ComboBox2'
+    Text = 'Odaberite korisnika'
   end
   object StringGrid1: TStringGrid
     Left = 8
@@ -183,6 +183,14 @@ object PakerForm: TPakerForm
     SQL.Strings = (
       'SELECT id, naziv, pos_broj FROM gradovi;')
     Left = 600
+    Top = 88
+  end
+  object FDQuery2: TFDQuery
+    Connection = DataModule2.Conn
+    SQL.Strings = (
+      'SELECT pr.naziv, pr.cena, pp.kolicina FROM posiljka_predmeti pp '
+      'INNER JOIN predmeti pr ON pp.predmet_id = pr.id;')
+    Left = 520
     Top = 88
   end
 end

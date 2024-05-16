@@ -30,15 +30,18 @@ type
     ukupnaCenaEdit: TEdit;
     ComboBox1: TComboBox;
     FetchGradoviQuery: TFDQuery;
-    ComboBox2: TComboBox;
+    korisniciComboBox: TComboBox;
     StringGrid1: TStringGrid;
+    FDQuery2: TFDQuery;
     procedure PopulateGradovi();
+    procedure PopulateKorisnici();
     procedure FormCreate(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure Button1Click(Sender: TObject);
   private
     posiljkaId: Integer;
     lastInsertedId: Integer;
+    korisniciIds: TStringList;
     gradIds: TStringList;
   public
     { Public declarations }
@@ -82,7 +85,7 @@ begin
   FDQuery1.SQL.Text := SQL;
   FDQuery1.Close;
   FDQuery1.ParamByName('id').Value := posiljkaId;
-  FDQuery1.ParamByName('korisnik_id').Value := '1'; // dodaj deo za dodavanje korisnika
+  FDQuery1.ParamByName('korisnik_id').Value := korisniciIds[korisniciComboBox.ItemIndex];
   FDQuery1.ParamByName('ukupna_cena').Value := ukupnaCenaEdit.Text;
   FDQuery1.ParamByName('status').Value := 'U_OBRADI';
   FDQuery1.ParamByName('napravljeno').Value := QuotedStr(FormatDateTime('YYYY-MM-DD', Now));
@@ -120,7 +123,6 @@ begin
   end;
 
   FDQuery1.Close;
-
 end;
 
 procedure TPakerForm.Button2Click(Sender: TObject);
@@ -165,6 +167,25 @@ begin
   FetchGradoviQuery.Close;
 end;
 
+procedure TPakerForm.PopulateKorisnici();
+begin
+  korisniciComboBox.Clear;
+
+  korisniciIds := TStringList.Create;
+
+  FDQuery2.SQL.Text := 'SELECT id, ime FROM nalozi';
+  FDQuery2.Open;
+  FDQuery2.First;
+
+  while not FDQuery2.Eof do
+  begin
+    korisniciComboBox.Items.Add(FDQuery2.FieldByName('ime').AsString);
+    korisniciIds.Add(FDQuery2.FieldByName('id').AsString);
+    FDQuery2.Next;
+  end;
+
+  FDQuery2.Close;
+end;
 
 procedure TPakerForm.FormCreate(Sender: TObject);
 var HeaderNames: array of string;
@@ -177,6 +198,7 @@ begin
   StringGrid1.Cells[3, 0] := 'Ukupna cena';
 
   PopulateGradovi();
+  PopulateKorisnici();
 end;
 
 end.
